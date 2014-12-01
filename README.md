@@ -1,6 +1,7 @@
 #IDValidator.js
-中国个人身份证号码验证器（JS版）
 Chinese Personal ID Card Validation
+
+中国个人身份证号码验证器（JS版）
 
 ##API
 `isValid()` 验证号码是否合法，合法返回true，不合法返回false
@@ -10,7 +11,7 @@ Chinese Personal ID Card Validation
 ##使用方法
 引入文件
 ```html
-<script type="text/javascript" src="path/to/IDValidator/IDValidator.min.js" charset="utf-8">
+<script charset="utf-8" type="text/javascript" src="path/to/IDValidator/IDValidator.min.js"></script>
 ```
 
 
