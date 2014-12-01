@@ -1,0 +1,15 @@
+{
+  "name": "IDValidator",
+  "version": "1.0.0",
+  "description": "中国个人身份证号验证 Chinese Personal ID Card Validation",
+  "main": "IDValidator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mc-zone",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "~0.6.0"
+  }
+}
