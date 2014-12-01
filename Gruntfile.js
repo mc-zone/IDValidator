@@ -7,6 +7,7 @@ module.exports = function(grunt){
                         +' * <%= pkg.main %> v<%= pkg.version %>\n'
                         +' * <%= pkg.description %>\n'
                         +' * Author: <%= pkg.author %>\n'
+                        +' * E-mail: <%= pkg.mail %>\n'
                         +' * Released under the <%= pkg.license %> license\n'
                         +' * Date: <%= grunt.template.today("yyyy-mm-dd") %>\n'
                         +' */\n'

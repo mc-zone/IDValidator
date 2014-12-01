@@ -1,7 +1,7 @@
 #IDValidator.js
-##中国个人身份证号码验证器（JS版）
-##Chinese Personal ID Card Validation
-===
+中国个人身份证号码验证器（JS版）
+Chinese Personal ID Card Validation
+
 ##API
 `isValid()` 验证号码是否合法，合法返回true，不合法返回false
 
@@ -10,7 +10,7 @@
 ##使用方法
 引入文件
 ```html
-<script type="text/javascript" src="path/to/IDValidator/IDValidator.js" charset="utf-8">
+<script type="text/javascript" src="path/to/IDValidator/IDValidator.min.js" charset="utf-8">
 ```
 
 
@@ -42,6 +42,7 @@ Validator.getInfo(id);
 
 ##参考资料
 GB 11643-1999 公民身份证号码
+
 GB 2260-1995 中华人民共和国行政区划代码
 
 ## License
