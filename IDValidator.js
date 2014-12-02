@@ -18,9 +18,9 @@ var IDValidator = function(){
 
      var util = {
         checkArg:function(id){              
-             var type = (typeof id);
+             var argType = (typeof id);
 
-             switch( type ){
+             switch( argType ){
                  case 'number':
                      //long number not allowed
                      id = id.toString();    
@@ -36,16 +36,24 @@ var IDValidator = function(){
                      return false;
              }
 
-             if(id.length !== 18){
+             id = id.toUpperCase();
+
+             if( id.length === 18 ){
+                 //18位
+                 var code = {
+                     body : id.slice(0,17),
+                     checkBit : id.slice(-1),
+                     type : 18
+                 };
+             }else if( id.length === 15 ){
+                 //15位
+                 var code = {
+                     body : id,
+                     type : 15
+                 };
+             }else{
                  return false;
              }
-
-             //TODO 15位
-             var code = {
-                 body : id.slice(0,17),
-                 checkBit : id.slice(-1),
-                 type : 18
-             };
 
              return code;
         }
@@ -76,10 +84,17 @@ var IDValidator = function(){
         }
         //生日码检查
         ,checkBirth:function(birth){
-          //TODO
-          var year  = parseInt( birth.slice(0,4) );
-          var month = parseInt( birth.slice(4,6) );
-          var day   = parseInt( birth.slice(-2) );
+          if( birth.length == 8 ){
+              var year  = parseInt( birth.slice(0,4),10 );
+              var month = parseInt( birth.slice(4,6),10 );
+              var day   = parseInt( birth.slice(-2),10 );
+          }else if( birth.length == 6 ){
+              var year  = parseInt( '19' + birth.slice(0,2),10 );
+              var month = parseInt( birth.slice(2,4),10 );
+              var day   = parseInt( birth.slice(-2),10 );
+          }else{
+              return false;
+          }
           /* TODO 是否需要判断年份
              if( year<1800 ){
              return false;
@@ -125,15 +140,20 @@ var IDValidator = function(){
              }
 
              var addr = code.body.slice(0,6);
-             var birth = code.body.slice(6,14);
+             var birth = ( code.type === 18 ? code.body.slice(6,14) : code.body.slice(6,12) );
              var order = code.body.slice(-3);
 
              if( !( util.checkAddr(addr) && util.checkBirth(birth) && util.checkOrder(order) ) ) {
                  return false;
              }
 
+             //15位不含校验码，到此已结束
+             if( code.type === 15 ){
+                 return true;
+             }
+
              /*
-              * 校验部分
+              * 校验位部分
               */
              //位置加权
              var posWeight = [];
@@ -146,7 +166,7 @@ var IDValidator = function(){
              var bodySum = 0;
              var bodyArr = code.body.split('');
              for(var i=0;i<bodyArr.length;i++){
-                 bodySum += ( parseInt(bodyArr[i]) * posWeight[18 - i] );
+                 bodySum += ( parseInt( bodyArr[i],10 ) * posWeight[18 - i] );
              }
 
              //得出校验码
@@ -177,19 +197,23 @@ var IDValidator = function(){
              var code = util.checkArg(id);
 
              var addr = code.body.slice(0,6);
-             var birth = code.body.slice(6,14);
+             var birth = ( code.type === 18 ? code.body.slice(6,14) : code.body.slice(6,12) );
              var order = code.body.slice(-3);
 
              var info = {
                  'addr': ( util.getAddrInfo(addr) || '未知' )
-                 ,'birth': ([birth.slice(0,4),birth.slice(4,6),birth.slice(-2)]).join('-')
+                 ,'birth': ( code.type === 18 ? (
+                             ([birth.slice(0,4),birth.slice(4,6),birth.slice(-2)]).join('-') ) :
+                             (['19'+birth.slice(0,2),birth.slice(2,4),birth.slice(-2)]).join('-') )
                  ,'sex': (order%2==0?0:1)
-                 ,'checkBit':code.checkBit
+                 ,'length': code.type
              };
+             if( code.type === 18 ){
+                 info.checkBit = code.checkBit;
+             }
 
              return info;
          }
-
 
      };
 
