@@ -1,28 +1,41 @@
 module.exports = function(grunt){
+    'use strict';
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        uglify: {
-            options: {
-                banner:  '/*\n'
-                        +' * <%= pkg.main %> v<%= pkg.version %>\n'
-                        +' * <%= pkg.description %>\n'
-                        +' * Author: <%= pkg.author %>\n'
-                        +' * E-mail: <%= pkg.mail %>\n'
-                        +' * Released under the <%= pkg.license %> license\n'
-                        +' * Date: <%= grunt.template.today("yyyy-mm-dd") %>\n'
-                        +' */\n'
+            jasmine: {
+              options: {
+                specs:   'tests/spec/*.js'
             },
+            IDValidator: {
+              src: ['src/IDValidator.js']
+            },
+            IDValidatorMin: {
+              src: ['IDValidator.min.js']
+            }
+        },
+        uglify: {
             build: {
               expand:true,
-              cwd: '', 
-              src: ['<%= pkg.main %>', '!*.min.js'], 
-              dest: '', 
+              cwd: 'src', 
+              src: ['*.js', '!*.min.js'], 
+              dest: './', 
               ext: '.min.js'
           }
+        },
+        jshint: {
+          options:{
+              laxcomma:true
+          },
+          all: ['Gruntfile.js', 'src/IDValidator.js', 'src/GB2260.js', 'tests/spec/**/*.js']
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default',['uglify']);
+    grunt.registerTask('default',['jshint','uglify','jasmine']);
+    grunt.registerTask('hint',['jshint']);
+    grunt.registerTask('test',['jasmine']);
 };
