@@ -59,7 +59,7 @@ var Validator = new IDValidator();
 
 ```
 
-提示：直接引入IDValidator就可以使用。
+提示：所有API引入IDValidator.js就可以使用。
 
 GB2260.js为GB 2260地址码数据，用于分析地址信息，在实例化时传入，可以不使用。
 
@@ -112,7 +112,7 @@ var ID = Validator.makeID();
 //制造一个15位ID
 var ID = Validator.makeID( true );
 ```
-详见 `[examples](https://github.com/mc-zone/IDValidator/tree/master/examples/)` .
+详见 [`examples`](https://github.com/mc-zone/IDValidator/tree/master/examples/) .
 
 ##参考资料
 GB 11643-1999 公民身份证号码
