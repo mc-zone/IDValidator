@@ -21,14 +21,14 @@ Chinese Personal ID Card Validation
 
 ###浏览器端直接使用
 ```html
-<script charset="utf-8" src="path/to/IDValidator/IDValidator.min.js" type="text/javascript" ></script>
-<script charset="utf-8" src="path/to/IDValidator/GB2260.min.js" type="text/javascript" ></script>
+<script type="text/javascript" src="path/to/IDValidator/IDValidator.min.js" charset="utf-8" ></script>
+<script type="text/javascript" src="path/to/IDValidator/GB2260.min.js" charset="utf-8" ></script>
 <script type="text/javascript">
 
     //新建普通实例
     var Validator = new IDValidator();
 
-    //使用地址码实例,需要引入GB2260
+    //或使用带地址码实例,需要引入GB2260
     var Validator = new IDValidator( GB2260 );
 
 </script>
@@ -59,7 +59,7 @@ var Validator = new IDValidator();
 
 ```
 
-提示：直接引入IDValidator就可以使用。
+提示：所有API引入IDValidator.js就可以使用。
 
 GB2260.js为GB 2260地址码数据，用于分析地址信息，在实例化时传入，可以不使用。
 
@@ -82,11 +82,17 @@ var Validator = new IDValidator( GB2260 );
 
 查询身份证号是否合法
 ```js
+//JS中长数字有精度丢失问题, 请使用字符串传值
 var id = "123456789012345678";
+
 Validator.isValid( id );
 //合法号码return true, 不合法return false
 ```
-注:由于15位身份证号不含校验码，只能依据地址与日期是否存在进行判断
+注:
+
+1. JS中长数字有精度丢失问题, 长数字请使用字符串传值
+
+2. 由于15位身份证号不含校验码，只能依据地址与日期是否存在进行判断
 
 获取身份证号信息
 ```js
@@ -112,7 +118,7 @@ var ID = Validator.makeID();
 //制造一个15位ID
 var ID = Validator.makeID( true );
 ```
-详见 `[examples](https://github.com/mc-zone/IDValidator/tree/master/examples/)` .
+详见 [`examples`](https://github.com/mc-zone/IDValidator/tree/master/examples/) .
 
 ##参考资料
 GB 11643-1999 公民身份证号码
