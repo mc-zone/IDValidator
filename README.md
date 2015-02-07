@@ -6,7 +6,7 @@ Chinese Personal ID Card Validation
 
 支持15位与18位身份证号
 
-支持 AMD/CommonJS, 或浏览器直接使用
+支持 AMD/CMD/CommonJS, 或浏览器直接使用
 
 
 ##API
@@ -46,8 +46,23 @@ require(["IDValidator","GB2260"], function(IDValidator,GB2260) {
 
     var Validator = new IDValidator();
 
+    //或使用地址库
+    var Validator2 = new IDValidator( GB2260 );
+
 });
 
+```
+
+###CMD / SeaJS
+```javascript
+define(function(require, exports, module) {
+    var IDValidator = require('path/to/IDValidator');
+    var Validator = new IDValidator();
+
+    //或使用地址库
+    var GB2260 = require('path/to/GB2260');
+    var Validator2 = new IDValidator( GB2260 );
+});
 ```
 
 ###CommonJS / Node
@@ -56,6 +71,9 @@ var IDValidator = require('path/to/IDValidator');
 var GB2260 = require('path/to/GB2260');
 
 var Validator = new IDValidator();
+
+//或使用地址库
+var Validator2 = new IDValidator( GB2260 );
 
 ```
 

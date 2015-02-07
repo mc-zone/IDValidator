@@ -13,18 +13,23 @@
 
     var instance = function(){ return factory(isWindow,global); };
 
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = factory(isWindow,global);
-    }
     // AMD / RequireJS
-    else if (typeof define !== 'undefined' && define.amd) {
+    if (typeof define !== 'undefined' && define.amd) {
         define('IDValidator', [], instance );
+    }
+    // CMD / Seajs 
+    else if (typeof define === "function" && define.cmd) {
+        define( function(require, exports, module) {
+            module.exports = factory(isWindow,global);
+        });
+    }
+    // CommonJS
+    else if (typeof module !== 'undefined' && module.exports) {
+        module.exports = factory(isWindow,global);
     }
     else {
         global.IDValidator = factory(isWindow,global);
     }
-
 
 })(function(isWindow,global){
 
@@ -33,17 +38,6 @@
             longNumber:'长数字存在精度问题，请使用字符串传值！ Long number is not allowed, because the precision of the Number In JavaScript.'
         }
      };
-
-     //尝试引入全局GB2260
-     //不全局引入了，放到参数值中去
-     /*
-     var _GB2260 = global.GB2260 || null;
-     if( _GB2260 == null && typeof require === 'function' ){
-         try{
-             _GB2260 = require('GB2260');
-         }catch(e){;}
-     }
-     */
 
      var util = {
         checkArg:function(id){              
@@ -130,11 +124,12 @@
           }else{
               return false;
           }
-          /* TODO 是否需要判断年份
-             if( year<1800 ){
-             return false;
-             }
-             */
+          // TODO 是否需要判断年份
+          /*
+          if( year<1800 ){
+              return false;
+          }
+          */
           //TODO 按月份检测
           if( month > 12 || month === 0 || day > 31 || day === 0 ){
               return false;
@@ -184,20 +179,29 @@
         }
      };
 
-
      var _IDValidator = function(GB2260){
          if( typeof GB2260 !== "undefined" ){
              this.GB2260 = GB2260;
          }
+         //建立cache
+         this.cache = {};
      };
 
      _IDValidator.prototype = {
 
-         isValid:function(id){              
+         isValid:function(id){
              var GB2260 = this.GB2260 || null;
              var code = util.checkArg(id);
              if( code === false ){
                  return false;              
+             }
+             //查询cache
+             if( this.cache.hasOwnProperty(id) && typeof this.cache[id].valid !== 'undefined' ){
+                 return this.cache[id].valid;
+             }else{
+                 if( !this.cache.hasOwnProperty(id) ){
+                    this.cache[id] = {};
+                 }
              }
 
              var addr = code.body.slice(0,6);
@@ -205,17 +209,18 @@
              var order = code.body.slice(-3);
 
              if( !( util.checkAddr(addr,GB2260) && util.checkBirth(birth) && util.checkOrder(order) ) ) {
+                 this.cache[id].valid = false;
                  return false;
              }
 
              //15位不含校验码，到此已结束
              if( code.type === 15 ){
+                 this.cache[id].valid = true;
                  return true;
              }
 
-             /*
-              * 校验位部分
-              */
+             /* 校验位部分 */
+             
              //位置加权
              var posWeight = [];
              for(var i=18;i>1;i--){
@@ -241,8 +246,10 @@
 
              //检查校验码
              if( checkBit !== code.checkBit ){
+                 this.cache[id].valid = false;
                  return false;
              }else{
+                 this.cache[id].valid = true;
                  return true;
              }
 
@@ -257,6 +264,12 @@
              }
              //TODO 复用此部分
              var code = util.checkArg(id);
+
+             //查询cache
+             //到此时通过isValid已经有了cache记录
+             if( typeof this.cache[id].info !== 'undefined' ){
+                 return this.cache[id].info;
+             }
 
              var addr = code.body.slice(0,6);
              var birth = ( code.type === 18 ? code.body.slice(6,14) : code.body.slice(6,12) );
@@ -276,6 +289,9 @@
              if( code.type === 18 ){
                  info.checkBit = code.checkBit;
              }
+
+             //记录cache
+             this.cache[id].info = info;
 
              return info;
          }

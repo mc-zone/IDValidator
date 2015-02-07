@@ -3,10 +3,19 @@
     var isWindow = ( typeof window !== 'undefined' ? true : false );
     var global = ( isWindow ? window : this );
 
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = factory();
-    }else if (typeof define !== 'undefined' && define.amd) {
+    //AMD
+    if (typeof define !== 'undefined' && define.amd) {
         define( [], factory() );
+    }
+    // CMD / Seajs 
+    else if (typeof define === "function" && define.cmd) {
+        define( function(require, exports, module) {
+            module.exports = factory();
+        });
+    }
+    //CommonJS 
+    else if (typeof module !== 'undefined' && module.exports) {
+        module.exports = factory();
     }
     else{
         global.GB2260 = factory();
