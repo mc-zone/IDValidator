@@ -1,6 +1,6 @@
 {
   "name": "IDValidator",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "中国个人身份证号验证 Chinese Personal ID Card Validation",
   "main": "IDValidator.js",
   "scripts": {

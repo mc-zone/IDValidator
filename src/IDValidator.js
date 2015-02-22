@@ -1,5 +1,5 @@
 /*
- * IDValidator.js v1.1.0
+ * IDValidator.js v1.2.0
  * 中国身份证号验证 Chinese Personal ID Card Validation
  * Author: mc@mc-zone.me
  * E-mail: mc@mc-zone.me
