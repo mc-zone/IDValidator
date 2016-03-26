@@ -1,32 +1,30 @@
 {
-  "name": "IDValidator",
-  "version": "1.2.0",
+  "name": "id-validator",
+  "version": "1.2.1",
   "description": "中国个人身份证号验证 Chinese Personal ID Card Validation",
-  "main": "IDValidator.js",
+  "main": "./src/IDValidator.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test"
   },
   "author": "mc-zone",
   "mail": "mc@mc-zone.me",
   "license": "MIT",
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-contrib-uglify": "~0.6.0",
-    "grunt-contrib-jshint": "~0.11.0",
-    "grunt-contrib-jasmine": "~0.8.2"
+    "grunt": "^0.4.5",
+    "grunt-contrib-jasmine": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^0.6.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mc-zone/IDValidator.git"
   },
   "keywords": [
-    "身份证"
+    "身份证",
+    "ID Card",
+    "GB2260"
   ],
   "bugs": {
     "url": "https://github.com/mc-zone/IDValidator/issues"
-  },
-  "dependencies": {
-    "grunt-contrib-uglify": "~0.6.0",
-    "grunt": "~0.4.5"
   }
 }

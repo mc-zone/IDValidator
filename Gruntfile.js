@@ -27,7 +27,7 @@ module.exports = function(grunt){
           options:{
               laxcomma:true
           },
-          all: ['Gruntfile.js', 'src/IDValidator.js', 'src/GB2260.js', 'tests/spec/**/*.js']
+          all: ['src/IDValidator.js', 'src/GB2260.js']
         }
     });
 

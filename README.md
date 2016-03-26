@@ -1,4 +1,4 @@
-#IDValidator.js
+#IDValidator.js [![Build Status](https://travis-ci.org/mc-zone/IDValidator.svg?branch=master)](https://travis-ci.org/mc-zone/IDValidator/) [![npm version](https://badge.fury.io/js/id-validator.svg)](http://badge.fury.io/js/id-validator)
 
 中国个人身份证号码验证器（JS版）
 
@@ -66,14 +66,16 @@ define(function(require, exports, module) {
 ```
 
 ###CommonJS / Node
+Install via npm:
+```bash
+npm i id-validator --save
+```
+
 ```javascript
-var IDValidator = require('path/to/IDValidator');
-var GB2260 = require('path/to/GB2260');
+var IDValidator = require('id-validator');
+var GB2260 = require('id-validator/src/GB2260');
 
-var Validator = new IDValidator();
-
-//或使用地址库
-var Validator2 = new IDValidator( GB2260 );
+var Validator = new IDValidator( GB2260 );
 
 ```
 
