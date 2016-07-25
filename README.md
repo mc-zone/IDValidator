@@ -1,6 +1,6 @@
 #IDValidator.js [![Build Status](https://travis-ci.org/mc-zone/IDValidator.svg?branch=master)](https://travis-ci.org/mc-zone/IDValidator/) [![npm version](https://badge.fury.io/js/id-validator.svg)](http://badge.fury.io/js/id-validator)
 
-中国个人身份证号码验证器（JS版）
+中国大陆个人身份证号码验证器（JS版）
 
 Chinese Personal ID Card Validation
 
