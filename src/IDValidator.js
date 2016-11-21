@@ -40,7 +40,7 @@
      };
 
      var util = {
-        checkArg:function(id){              
+        checkArg:function(id, forceType){              
              var argType = (typeof id);
 
              switch( argType ){
@@ -59,6 +59,13 @@
              }
 
              id = id.toUpperCase();
+
+             if(forceType && !isNaN(forceType)){
+               forceType = parseInt(forceType);
+               if(id.length !== forceType){
+                 return false;
+               }
+             }
 
              var code = null;
              if( id.length === 18 ){
@@ -189,9 +196,9 @@
 
      _IDValidator.prototype = {
 
-         isValid:function(id){
+         isValid:function(id, forceType){
              var GB2260 = this.GB2260 || null;
-             var code = util.checkArg(id);
+             var code = util.checkArg(id, forceType);
              if( code === false ){
                  return false;              
              }
@@ -256,13 +263,12 @@
          }
 
          //分析详细信息
-         ,getInfo:function(id){
+         ,getInfo:function(id, forceType){
              var GB2260 = this.GB2260 || null;
              //号码必须有效
-             if( this.isValid(id) === false ){
+             if( this.isValid(id, forceType) === false ){
                  return false;
              }
-             //TODO 复用此部分
              var code = util.checkArg(id);
 
              //查询cache

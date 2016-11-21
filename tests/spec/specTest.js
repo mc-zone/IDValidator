@@ -21,9 +21,13 @@ describe("IDValidator test", function(){
     it( fifteenId+" should be a 15 ID", function() {
         expect( Validator.getInfo(fifteenId).length ).toBe(15);
     });
-
     it( "the maked ID "+makeID+" should be a REAL ID", function() {
         expect( Validator.isValid(makeID) ).toBe(true);
     });
-
+    it( " limited 18 ID", function() {
+        expect( Validator.isValid(fifteenId) ).toBe(true);
+        expect( Validator.isValid(fifteenId, 18) ).toBe(false);
+        expect( typeof Validator.getInfo(fifteenId) ).toBe("object");
+        expect( Validator.getInfo(fifteenId, 18) ).toBe(false);
+    });
 });

@@ -107,6 +107,9 @@ var id = "123456789012345678";
 
 Validator.isValid( id );
 //合法号码return true, 不合法return false
+
+Validator.isValid( id, 18 );
+//强制要求18位ID
 ```
 注:
 
@@ -128,6 +131,10 @@ Validator.getInfo( id );
  *   'length':   18 //身份证类型，15位或18位
  * }
  */
+
+
+Validator.getInfo( id,18 );
+//强制要求18位ID
 ```
 
 伪造一个ID
