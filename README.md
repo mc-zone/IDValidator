@@ -89,7 +89,7 @@ IDValidator.min.js 3K
 
 GB2260.min.js 140K 
 
-##使用方法:
+## 使用方法:
 
 实例化查询器:
 ```js
