@@ -1,4 +1,4 @@
-#IDValidator.js [![Build Status](https://travis-ci.org/mc-zone/IDValidator.svg?branch=master)](https://travis-ci.org/mc-zone/IDValidator/) [![npm version](https://badge.fury.io/js/id-validator.svg)](http://badge.fury.io/js/id-validator)
+# IDValidator.js [![Build Status](https://travis-ci.org/mc-zone/IDValidator.svg?branch=master)](https://travis-ci.org/mc-zone/IDValidator/) [![npm version](https://badge.fury.io/js/id-validator.svg)](http://badge.fury.io/js/id-validator)
 
 中国大陆个人身份证号码验证器（JS版）
 
@@ -9,7 +9,7 @@ Chinese Personal ID Card Validation
 支持 AMD/CMD/CommonJS, 或浏览器直接使用
 
 
-##API
+## API
 `isValid()` 验证号码是否合法，合法返回true，不合法返回false
 
 `getInfo()` 号码合法时返回分析信息（地区、出生日期、性别、校验位），不合法返回false
@@ -17,9 +17,9 @@ Chinese Personal ID Card Validation
 `makeID()` 伪造一个符合校验的ID
 
 
-##Getting Start
+## Getting Start
 
-###浏览器端直接使用
+### 浏览器端直接使用
 ```html
 <script type="text/javascript" src="path/to/IDValidator/IDValidator.min.js" charset="utf-8" ></script>
 <script type="text/javascript" src="path/to/IDValidator/GB2260.min.js" charset="utf-8" ></script>
@@ -34,7 +34,7 @@ Chinese Personal ID Card Validation
 </script>
 ```
 
-###AMD / RequireJS
+### AMD / RequireJS
 ```javascript
 requirejs.config({
     paths: {
@@ -53,7 +53,7 @@ require(["IDValidator","GB2260"], function(IDValidator,GB2260) {
 
 ```
 
-###CMD / SeaJS
+### CMD / SeaJS
 ```javascript
 define(function(require, exports, module) {
     var IDValidator = require('path/to/IDValidator');
@@ -65,7 +65,7 @@ define(function(require, exports, module) {
 });
 ```
 
-###CommonJS / Node
+### CommonJS / Node
 Install via npm:
 ```bash
 npm i id-validator --save
@@ -89,7 +89,7 @@ IDValidator.min.js 3K
 
 GB2260.min.js 140K 
 
-##使用方法:
+## 使用方法:
 
 实例化查询器:
 ```js
@@ -147,7 +147,7 @@ var ID = Validator.makeID( true );
 ```
 详见 [`examples`](https://github.com/mc-zone/IDValidator/tree/master/examples/) .
 
-##参考资料
+## 参考资料
 GB 11643-1999 公民身份证号码
 
 GB 2260-1995 中华人民共和国行政区划代码
