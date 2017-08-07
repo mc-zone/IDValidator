@@ -2,7 +2,7 @@
 
 中国大陆个人身份证号码验证器（JS版）
 
-Chinese Personal ID Card Validation
+Chinese Mainland Personal ID Card Validation
 
 支持15位与18位身份证号
 
